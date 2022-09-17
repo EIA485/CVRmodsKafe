@@ -10,16 +10,22 @@
 
     <ItemGroup>
         <Reference Include="0Harmony">
-            <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\MelonLoader\0Harmony.dll</HintPath>
+            <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\BepInEx\core\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-            <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Assembly-CSharp.dll</HintPath>
+          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+		<Reference Include="BepInEx.Unity">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\BepInEx\core\BepInEx.Core.dll</HintPath>
+		</Reference>
+        <Reference Include="BepInEx.Unity">
+          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\BepInEx\core\BepInEx.Unity.dll</HintPath>
         </Reference>
         <Reference Include="Cohtml.Runtime">
           <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Cohtml.Runtime.dll</HintPath>
         </Reference>
-        <Reference Include="MelonLoader">
-            <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\MelonLoader\MelonLoader.dll</HintPath>
+        <Reference Include="UnityEngine">
+          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
             <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.CoreModule.dll</HintPath>

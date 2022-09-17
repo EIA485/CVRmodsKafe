@@ -6,18 +6,23 @@ using ABI_RC.Core.Savior;
 using ABI_RC.Systems.MovementSystem;
 using CCK.Debugger.Components;
 using HarmonyLib;
-using MelonLoader;
 using UnityEngine;
+using BepInEx;
+using BepInEx.Logging;
 
 namespace CCK.Debugger;
 
-public class CCKDebugger : MelonMod {
+
+[BepInPlugin(Properties.AssemblyInfoParams.Name, Properties.AssemblyInfoParams.Name, Properties.AssemblyInfoParams.Version)]
+public class CCKDebugger : BaseUnityPlugin {
+    public static ManualLogSource instanceLogger;
+    CCKDebugger() => instanceLogger = Logger;
 
     internal static bool TestMode;
 
     private const string _assetPath = "Assets/Prefabs/CCKDebuggerMenu.prefab";
 
-    public override void OnApplicationStart() {
+    public void Awake() {
 
         // Check if it is in debug mode (to test functionalities that are waiting for bios to be enabled)
         // Keeping it hard-ish to enable so people don't abuse it
@@ -30,7 +35,7 @@ public class CCKDebugger : MelonMod {
             var sb = new System.Text.StringBuilder();
             foreach (var t in hashBytes) sb.Append(t.ToString("X2"));
             TestMode = sb.ToString().Equals("738A9A4AD5E2F8AB10E702D44C189FA8");
-            if (TestMode) MelonLogger.Msg("Test Mode is ENABLED!");
+            if (TestMode) Logger.LogMessage("Test Mode is ENABLED!");
         }
     }
 

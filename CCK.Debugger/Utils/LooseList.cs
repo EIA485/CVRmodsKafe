@@ -1,6 +1,4 @@
-﻿using MelonLoader;
-
-namespace CCK.Debugger.Utils;
+﻿namespace CCK.Debugger.Utils;
 
 public class LooseList<T> : List<T> {
 
@@ -67,8 +65,8 @@ public class LooseList<T> : List<T> {
             CurrentObject = this[CurrentObjectIndex];
         }
         catch (Exception e) {
-            MelonLogger.Error("Something went wrong when updating our loose list.");
-            MelonLogger.Error(e);
+            CCKDebugger.instanceLogger.LogError("Something went wrong when updating our loose list.");
+            CCKDebugger.instanceLogger.LogError(e);
             throw;
         }
 

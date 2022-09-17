@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 using CCK.Debugger.Properties;
-using MelonLoader;
-
 
 [assembly: AssemblyVersion(AssemblyInfoParams.Version)]
 [assembly: AssemblyFileVersion(AssemblyInfoParams.Version)]
@@ -9,19 +7,6 @@ using MelonLoader;
 [assembly: AssemblyTitle(AssemblyInfoParams.Name)]
 [assembly: AssemblyCompany(AssemblyInfoParams.Author)]
 [assembly: AssemblyProduct(AssemblyInfoParams.Name)]
-
-[assembly: MelonInfo(
-    typeof(CCK.Debugger.CCKDebugger),
-    AssemblyInfoParams.Name,
-    AssemblyInfoParams.Version,
-    AssemblyInfoParams.Author,
-    downloadLink: "https://github.com/kafeijao/Kafe_CVR_Mods"
-)]
-[assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
-[assembly: MelonPlatform(MelonPlatformAttribute.CompatiblePlatforms.WINDOWS_X64)]
-[assembly: MelonPlatformDomain(MelonPlatformDomainAttribute.CompatibleDomains.MONO)]
-[assembly: MelonColor(ConsoleColor.Green)]
-[assembly: MelonAuthorColor(ConsoleColor.DarkYellow)]
 
 namespace CCK.Debugger.Properties;
 internal static class AssemblyInfoParams {
