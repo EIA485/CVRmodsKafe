@@ -4,6 +4,7 @@ using ABI_RC.Core.Networking.IO.UserGeneratedContent;
 using ABI_RC.Core.Player;
 using ABI_RC.Core.Savior;
 using ABI_RC.Systems.MovementSystem;
+using ABI.CCK.Components;
 using CCK.Debugger.Components;
 using HarmonyLib;
 using UnityEngine;
@@ -49,11 +50,65 @@ public class CCKDebugger : BaseUnityPlugin {
             Events.Spawnable.OnSpawnableDetailsRecycled(__instance);
         }
 
+        // Spawnable Trigger Task
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRSpawnableTriggerTask), nameof(CVRSpawnableTriggerTask.ExecuteTrigger))]
+        static void AfterSpawnableTriggerExecuted(CVRSpawnableTriggerTask __instance) {
+            Events.Spawnable.OnSpawnableTriggerExecuted(__instance);
+        }
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRSpawnableTriggerTask), nameof(CVRSpawnableTriggerTask.Trigger))]
+        [HarmonyPatch(argumentTypes: new Type[]{})]
+        static void AfterSpawnableTriggerTriggeredByHelper(CVRSpawnableTriggerTask __instance) {
+            Events.Spawnable.OnSpawnableTriggerTriggered(__instance);
+        }
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRSpawnableTriggerTask), nameof(CVRSpawnableTriggerTask.Trigger))]
+        [HarmonyPatch( argumentTypes: new[] { typeof(CVRPointer), typeof(bool), typeof(float), typeof(bool) })]
+        static void AfterSpawnableTriggerTriggered(CVRSpawnableTriggerTask __instance, bool exit) {
+            // Ignore the exit events on the enterTasks
+            if (exit) return;
+            Events.Spawnable.OnSpawnableTriggerTriggered(__instance);
+        }
+        // Spawnable Trigger Task Stay
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRSpawnableTriggerTaskStay), nameof(CVRSpawnableTriggerTaskStay.trigger))]
+        static void AfterSpawnableStayTriggerTriggered(CVRSpawnableTriggerTaskStay __instance) {
+            Events.Spawnable.OnSpawnableStayTriggerTriggered(__instance);
+        }
+
         // Avatar
         [HarmonyPrefix]
         [HarmonyPatch(typeof(AvatarDetails_t), nameof(AvatarDetails_t.Recycle))]
         static void BeforeAvatarDetailsRecycle(AvatarDetails_t __instance) {
             Events.Avatar.OnAvatarDetailsRecycled(__instance);
+        }
+
+        // Avatar AAS Trigger Task
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRAdvancedAvatarSettingsTriggerTask), nameof(CVRAdvancedAvatarSettingsTriggerTask.ExecuteTrigger))]
+        static void AfterAasTriggerExecuted(CVRAdvancedAvatarSettingsTriggerTask __instance) {
+            Events.Avatar.OnAasTriggerExecuted(__instance);
+        }
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRAdvancedAvatarSettingsTriggerTask), nameof(CVRAdvancedAvatarSettingsTriggerTask.Trigger))]
+        [HarmonyPatch(argumentTypes: new Type[]{})]
+        static void AfterAasTriggerTriggeredByHelper(CVRAdvancedAvatarSettingsTriggerTask __instance) {
+            Events.Avatar.OnAasTriggerTriggered(__instance);
+        }
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRAdvancedAvatarSettingsTriggerTask), nameof(CVRAdvancedAvatarSettingsTriggerTask.Trigger))]
+        [HarmonyPatch( argumentTypes: new[] { typeof(CVRPointer), typeof(bool), typeof(float), typeof(bool) })]
+        static void AfterAasTriggerTriggered(CVRAdvancedAvatarSettingsTriggerTask __instance, bool exit) {
+            // Ignore the exit events on the enterTasks
+            if (exit) return;
+            Events.Avatar.OnAasTriggerTriggered(__instance);
+        }
+        // Avatar AAS Trigger Task Stay
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CVRAdvancedAvatarSettingsTriggerTaskStay), nameof(CVRAdvancedAvatarSettingsTriggerTaskStay.trigger))]
+        static void AfterAasStayTriggerTriggered(CVRAdvancedAvatarSettingsTriggerTaskStay __instance) {
+            Events.Avatar.OnAasStayTriggerTriggered(__instance);
         }
 
         // Player
